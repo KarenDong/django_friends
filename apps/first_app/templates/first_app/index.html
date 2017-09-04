@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <style media="screen">
+      main{
+        width: 800px;
+        margin: 0 auto;
+      }
+      form{
+        width: 300px;
+        display: inline-block;
+        border: 2px #000000 solid;
+        margin: 50px;
+        padding: 10px;
+      }
+      label{
+        display: block;
+      }
+      li{
+        color: #FF0000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome!</h1>
+    <ul class="messages">
+    {% if messages %}
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    {% endif %}
+    </ul>
+    <form action="/register" method="post">
+      {% csrf_token %}
+      <h2>Registration</h2>
+      <label for="name">Name:</label>
+      <input type="text" name="name">
+      <label for="alias">Alias:</label>
+      <input type="text" name="alias">
+      <label for="email">Email:</label>
+      <input type="text" name="email">
+      <label for="password">Password:</label>
+      <input type="password" name="password">
+      <p>* password should be at least 8 characters</p>
+      <label for="pw_conf">Confirm PW:</label>
+      <input type="password" name="pw_conf">
+      <label for="dob">Date of Birth:</label>
+      <input type="date" name="dob">
+      <br>
+      <input type="submit" value="Register">
+    </form>
+    <form action="/login" method="post">
+      {% csrf_token %}
+      <h2>Login</h2>
+      <label for="email">Email</label>
+      <input type="text" name="email">
+      <label for="password">Password</label>
+      <input type="password" name="password">
+      <br>
+      <input type="submit" value="Login">
+    </form>
+  </body>
+</html>
